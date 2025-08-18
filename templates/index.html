@@ -56,24 +56,15 @@
 
         for (const item of items) {
             if (item.type.indexOf("image") === 0) {
-                handleFile(item.getAsFile())
+                const file = item.getAsFile()
+
+                const transfer = new DataTransfer()
+                transfer.items.add(file)
+
+                fileInput.files = transfer.files
+                form.submit()
             }
         }
     }
-
-    function handleFile(file) {
-        const data = new FormData()
-        data.append("image", file)
-
-        fetch("/upload", {
-            method: "POST",
-            body: data
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
-    }
-
 </script>
 </html>

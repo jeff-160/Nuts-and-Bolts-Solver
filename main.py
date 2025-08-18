@@ -10,20 +10,22 @@ def get_solution(src):
     assert os.path.exists(src), f"Cannot locate image file: {src}"
 
     puzzle = get_puzzle(src)
-
     solution = solve(puzzle)
-    
-    steps = [f"Step {step}: Bolt {src + 1} -> Bolt {dst + 1}" for step, (src, dst) in enumerate(solution, 1)]
 
-    return puzzle, steps
+    return puzzle, solution
 
 def main():
-    src = input("> ")
+    assert len(sys.argv) > 1, "Puzzle image not supplied"
 
-    puzzle, steps = get_solution(src)
+    puzzle, solution = get_solution(sys.argv[1])
 
     print("Puzzle:", puzzle)
-    print("\n".join(steps))
+
+    if solution:
+        for step, (src, dst) in enumerate(solution, 1):
+            print(f"Step {step}: Bolt {src + 1} -> Bolt {dst + 1}")
+    else:
+        print("No solution found!")
 
 if __name__ == "__main__":
     try:

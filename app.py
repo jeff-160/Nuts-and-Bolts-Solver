@@ -27,7 +27,7 @@ def solution():
     puzzle, steps = get_solution(os.path.join(UPLOAD_FOLDER, url))
 
     puzzle = '[\n%s\n]' % '\n'.join(f'  {stack}' for stack in puzzle)
-    steps = [step.replace("->", "&#8594;") for step in steps]
+    steps = '\n'.join([f'Step {step}: Bolt {src} &#8594; Bolt {dst}' for step, (src, dst) in enumerate(steps, 1)]) if steps else "No solution found!"
 
     return render_template("solution.html", image=url, puzzle=puzzle, steps=steps)
 

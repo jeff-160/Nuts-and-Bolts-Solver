@@ -43,9 +43,7 @@
 
         <div class="steps">
             <h1>Solution Steps</h1>
-            {% for step in steps %}
-                {{ step | safe }}<br>
-            {% endfor %}
+            <pre>{{ steps | safe }}</pre>
         </div>
     </div>
 </body>
