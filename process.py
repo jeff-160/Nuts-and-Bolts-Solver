@@ -1,7 +1,7 @@
 import cv2
 from color import *
 
-DEBUG = True
+DEBUG = False
 
 def get_bb(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

@@ -42,7 +42,6 @@ def moveBalls(tubeHeight, fromTube, toTube):
 
     colour = fromTube[-1]
     count = 0
-
     
     for ball in reversed(fromTube):
         if ball == colour:
