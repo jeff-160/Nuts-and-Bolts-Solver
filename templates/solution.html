@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuts & Bolts Solver</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 100px;
+        }
+
+        .puzzle {
+            flex: 1;  
+            max-width: 50vw;
+        }
+
+        .puzzle img {
+            width: 100%; 
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .steps {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('index') }}" style="position: absolute; right: 10px; margin: auto;">Upload another puzzle</a>
+    
+    <div class="container">
+
+        <div class="puzzle">
+            <img src="{{ url_for('get_file', filename=image) }}">
+            <pre>{{ puzzle }}</pre>
+        </div>
+
+        <div class="steps">
+            <h1>Solution Steps</h1>
+            {% for step in steps %}
+                {{ step | safe }}<br>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
