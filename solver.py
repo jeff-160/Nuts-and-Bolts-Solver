@@ -96,17 +96,6 @@ def solveGrid(grid, tubeHeight=None, visitedPositions=None, answer=None):
                     return True
     return False
 
-def compress_answer(answer):
-    compressed = []
-
-    for move in answer:
-        if compressed and compressed[-1] == move[::-1]:
-            compressed.pop()
-        else:
-            compressed.append(move)
-    
-    return compressed
-
 def solve(puzzle):
     grid = [list(map(str, stack)) for stack in puzzle]
 
@@ -117,7 +106,5 @@ def solve(puzzle):
     answer = []
     visitedPositions = set()
     solved = solveGrid(grid, visitedPositions=visitedPositions, answer=answer)
-
-    answer = compress_answer(answer)
 
     return answer[::-1] if solved else None
