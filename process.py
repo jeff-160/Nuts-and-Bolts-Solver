@@ -45,7 +45,6 @@ def get_bb(img):
     return bounding_boxes
 
 def get_stacks(img, bounding_boxes):
-    colors = {}
     bolts = []
 
     for (x, y, w, h) in bounding_boxes[:-2]:
@@ -70,18 +69,12 @@ def get_stacks(img, bounding_boxes):
 
             color = get_color(r, g, b)
             
-            if color not in colors:
-                colors[color] = len(colors)
-            
-            bolt.append(colors[color])
+            bolt.append([*colors.keys()].index(color))
             
             if DEBUG:
                 cv2.rectangle(img, (cx - reg, cy - reg), (cx + reg, cy + reg), (0, 0, 255), 2)
 
         bolts.append(bolt)
-
-    if DEBUG:
-        print(f"{len(colors)} colors:", colors)
 
     return bolts
 

@@ -5,6 +5,7 @@ from flask import Flask, request, render_template, redirect, url_for, send_from_
 import os
 from datetime import datetime
 
+from color import colors
 from main import get_solution
 
 app = Flask(__name__)
@@ -26,7 +27,9 @@ def solution():
 
     puzzle, steps = get_solution(os.path.join(UPLOAD_FOLDER, url))
 
+    puzzle = [[[*colors.keys()][nut] for nut in stack] for stack in puzzle]
     puzzle = '[\n%s\n]' % '\n'.join(f'  {stack}' for stack in puzzle)
+
     steps = '\n'.join([f'Step {step}: Bolt {src + 1} &#8594; Bolt {dst + 1}' for step, (src, dst) in enumerate(steps, 1)]) if steps else "No solution found!"
 
     return render_template("solution.html", image=url, puzzle=puzzle, steps=steps)
