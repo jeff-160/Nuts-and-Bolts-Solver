@@ -35,7 +35,7 @@ def get_bb(img):
             bounding_boxes.append(transform(b))
     
     # sort by row-wise
-    bounding_boxes.sort(key=lambda b: (b[1] // 10, b[0]))
+    bounding_boxes.sort(key=lambda b: (b[1] // 50, b[0]))
 
     if DEBUG:
         for i, (x, y, w, h) in enumerate(bounding_boxes, 1):
