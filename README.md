@@ -25,3 +25,10 @@ pip install flask
 
 python app.py
 ```
+
+--- 
+
+## Notes
+
+- This tool is only meant for the traditional nut sorting puzzles, and won't work on stages with unknown nuts
+- The detection should be accurate most of the time, but might still be subject to some inaccuracies
